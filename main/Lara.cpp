@@ -14,9 +14,8 @@ LARA::LARA() : display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET) {
   pinMode(SENSOR_LINHA_ESQUERDO, INPUT);
   pinMode(SENSOR_LINHA_DIREITO, INPUT);
 
-  // Inicializa PWM para motores (ESP32)
-  ledcSetup(0, 5000, 8); // canal 0, 5kHz, 8 bits
-  ledcSetup(1, 5000, 8); // canal 1, 5kHz, 8 bits
+  ledcSetup(0, 5000, 8);
+  ledcSetup(1, 5000, 8);
   ledcAttachPin(PINO_VELOCIDADE_MOTOR_A, 0);
   ledcAttachPin(PINO_VELOCIDADE_MOTOR_B, 1);
 
@@ -68,6 +67,7 @@ void LARA::parar() {
 unsigned long LARA::calcularTempo(float distancia_cm, int velocidade) {
   const float VELOCIDADE_BASE_CM_POR_S = 10.0;
   float cm_por_seg = VELOCIDADE_BASE_CM_POR_S * (velocidade / (float)VELOCIDADE_MAXIMA);
+  
   return (unsigned long)((distancia_cm / cm_por_seg) * 1000);
 }
 

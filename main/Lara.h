@@ -69,10 +69,8 @@ class LARA {
     void seguirLinha(int velocidade);
 
   private:
-    // Não precisa declarar pinos novamente, já estão definidos como #define
     Adafruit_SSD1306 display;
-
-    // Auxiliar
+    
     unsigned long calcularTempo(float distancia_cm, int velocidade);
     void setMotores(int A1, int A2, int B1, int B2, int velA, int velB);
 };
