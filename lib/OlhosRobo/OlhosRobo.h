@@ -11,10 +11,12 @@ extern const uint8_t eye_lookleft [] PROGMEM;
 extern const uint8_t eye_lookright [] PROGMEM; 
 extern const uint8_t eye_nuetral [] PROGMEM;
 extern const uint8_t eye_squint [] PROGMEM;
-void look_nuetral(int t);
-void blink_eyes(int t,int numberOfblinks);
-void look_left(int t);
-void look_right(int t);
-void look_squint(int t);
+
+void look_nuetral(Adafruit_SSD1306 &display, int t);
+void look_squint(Adafruit_SSD1306 &display, int t);
+void look_right(Adafruit_SSD1306 &display, int t);
+void look_left(Adafruit_SSD1306 &display, int t);
+void blink_eyes(Adafruit_SSD1306 &display, int t, int numberOfblinks);
+void sad_blink(Adafruit_SSD1306 &display, int t, int numberOfblinks);
 
 #endif

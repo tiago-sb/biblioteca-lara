@@ -402,56 +402,47 @@ const uint8_t eye_sad2 [] PROGMEM = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-void look_nuetral(int t) {
+void look_nuetral(Adafruit_SSD1306 &display, int t) {
   display.clearDisplay();
-
   display.drawBitmap(0, 0, eye_nuetral, 128, 64, 1);
   display.display();
-  vTaskDelay(t/ portTICK_RATE_MS);
+  vTaskDelay(t / portTICK_RATE_MS);
 }
 
-void look_squint(int t) {
+void look_squint(Adafruit_SSD1306 &display, int t) {
   display.clearDisplay();
-  
   display.drawBitmap(0, 0, eye_squint, 128, 64, 1);
   display.display();
-  
-  vTaskDelay(t/ portTICK_RATE_MS);
+  vTaskDelay(t / portTICK_RATE_MS);
 }
 
-void look_right(int t) {   
-  look_squint(100);
+void look_right(Adafruit_SSD1306 &display, int t) {   
+  look_squint(display, 100);
   display.clearDisplay();
-  
   display.drawBitmap(0, 0, eye_lookright, 128, 64, 1);
   display.display();
-
-  vTaskDelay(t/ portTICK_RATE_MS);
+  vTaskDelay(t / portTICK_RATE_MS);
 }
 
-void look_left(int t) { 
-  look_squint(100);
+void look_left(Adafruit_SSD1306 &display, int t) { 
+  look_squint(display, 100);
   display.clearDisplay();
-
   display.drawBitmap(0, 0, eye_lookleft, 128, 64, 1);
   display.display();
-
-  vTaskDelay(t/ portTICK_RATE_MS);
+  vTaskDelay(t / portTICK_RATE_MS);
 }
 
-void blink_eyes(int t,int numberOfblinks) {
-  for(int i = 0;i <= numberOfblinks ;i++) {
-    look_nuetral(t);
-    look_squint(100);
+void blink_eyes(Adafruit_SSD1306 &display, int t, int numberOfblinks) {
+  for (int i = 0; i <= numberOfblinks; i++) {
+    look_nuetral(display, t);
+    look_squint(display, 100);
   }
 }
 
-void sad_blink(int t,int numberOfblinks) {
+void sad_blink(Adafruit_SSD1306 &display, int t, int numberOfblinks) {
   display.clearDisplay();
-
   display.drawBitmap(0, 0, eye_sad1, 128, 64, 1);
   display.display();
-
   vTaskDelay(1000);
-  look_squint(100);
+  look_squint(display, 100);
 }
