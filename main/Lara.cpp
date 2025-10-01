@@ -79,6 +79,13 @@ unsigned long LARA::calcularTempo(float distancia_cm, int velocidade) {
   return (unsigned long)((distancia_cm / cm_por_seg) * 1000.0f);
 }
 
+void LARA::andarParaFrente(float distancia_cm, int velocidade) {
+  frente(velocidade);
+  unsigned long t = calcularTempo(distancia_cm, velocidade);
+  if (t > 0) delay(t);
+  parar();
+}
+
 void LARA::andarParaTras(float distancia_cm, int velocidade) {
   re(velocidade);
   unsigned long t = calcularTempo(distancia_cm, velocidade);
